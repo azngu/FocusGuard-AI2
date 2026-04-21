@@ -1,21 +1,25 @@
 import pandas as pd
+import numpy as np
 from sklearn.cluster import KMeans
 import joblib
-import numpy as np
 
-# 1. Tạo dữ liệu giả lập dựa trên thống kê của dự án (50 mẫu)
+# 1. Giả lập dữ liệu huấn luyện (giống với 50 mẫu của con)
 # Các cột: [Screen Time, Pickups, Focus Time]
 np.random.seed(42)
-data = np.random.randint(50, 600, size=(50, 3))
+data = np.random.randint(50, 650, size=(50, 3))
 
-# 2. Khởi tạo mô hình K-Means với 5 cụm (tương ứng 5 nhóm con đã đặt tên)
+# 2. Khởi tạo mô hình K-Means với 5 cụm
+# Đây chính là "bộ não" phân loại học sinh thành 5 nhóm
 model = KMeans(n_clusters=5, random_state=42, n_init=10)
 
-# 3. Cho AI "học" (Fit) dữ liệu này
+# 3. Cho AI học dữ liệu
 model.fit(data)
 
-# 4. "Đóng gói" AI này vào file .pkl
+# 4. XUẤT FILE .PKL (Đóng gói bộ não)
 joblib.dump(model, 'focus_model.pkl')
 
-print("✅ Đã tạo thành công file focus_model.pkl!")
-print("Bây giờ con có thể dùng file này để upload lên Streamlit rồi đó.")
+print("--------------------------------------------------")
+print("✅ THÀNH CÔNG RỒI!")
+print("Thầy đã tạo ra file 'focus_model.pkl' cho con.")
+print("Bây giờ con hãy tìm file này trong thư mục và upload lên GitHub nhé.")
+print("--------------------------------------------------")
